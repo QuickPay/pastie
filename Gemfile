@@ -3,7 +3,7 @@ source :rubygems
 # Project requirements
 gem 'rake'
 gem 'rack-flash'
-gem 'thin' # or mongrel
+gem "unicorn"
 
 # Component requirements
 gem 'rack-codehighlighter', :require => "rack/codehighlighter"
@@ -20,6 +20,7 @@ gem 'bson_ext', :require => "mongo"
 # Development requirements
 gem 'rack-debug19', :group => 'dev'
 gem 'ruby-debug19', :group => 'dev'
+gem 'thin',         :group => 'dev'
 
 # Padrino
 gem 'padrino', "0.9.19"
