@@ -34,7 +34,6 @@ class Scruffy < Padrino::Application
     id = Base64.decode64(id).unpack("H*") if id.length == 16
     @paste = Paste.find(id) rescue nil
     @paste = @paste.first if @paste.is_a? Array
-    #debugger
 
     if @paste.nil? or @paste.class != Paste
       render 'nopaste'
@@ -47,9 +46,8 @@ class Scruffy < Padrino::Application
     paste = Paste.new
     paste.title = params[:title]
     paste.type = params[:type] || 'text'
-    paste.paste = request.body.readlines.join("")
+    paste.paste = request.body.read
     paste.save
-    #debugger
     return Base64.encode64([paste.id.to_s].pack("H*")).chomp
   end
 end
