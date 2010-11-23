@@ -1,0 +1,11 @@
+#block-text.block
+  .content
+    %h2.title= @paste.title
+    .inner
+      %pre= ":::#{@paste.type}\n#{@paste.paste.gsub('<', '&lt;')}"
+      %p
+        %span.gray
+          Created by
+          = 'unknown'
+          at
+          = @paste.updated_at
