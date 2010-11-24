@@ -1,3 +1,4 @@
 bundle/config
-vendor/ruby
-vendor/bundle
+vendor/ruby/
+vendor/bundle/
+logs/
