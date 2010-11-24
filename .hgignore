@@ -2,3 +2,12 @@ bundle/config
 vendor/ruby/
 vendor/bundle/
 logs/
+
+# Production shell-user ignores
+.cshrc
+.login*
+.mail*
+.profile
+.rhosts
+.shrc
+.ssh/
