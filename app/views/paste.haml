@@ -2,7 +2,7 @@
   .content
     %h2.title= @paste.title
     .inner
-      %pre= ":::#{@paste.type}\n#{@paste.paste.gsub('<', '&lt;')}"
+      %pre&= ":::#{@paste.type}\n#{@paste.paste}"
       %p
         %span.gray
           Created by
