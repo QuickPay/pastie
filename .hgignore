@@ -3,6 +3,7 @@ vendor/ruby/
 vendor/bundle/
 logs/
 unicorn.pid
+.vagrant
 
 # Production shell-user ignores
 .cshrc
