@@ -1,9 +1,9 @@
-bundle/config
-vendor/ruby/
-vendor/bundle/
-logs/
-unicorn.pid
-.vagrant
+^.bundle/config
+^vendor/ruby/
+^vendor/bundle/
+^logs/
+^unicorn.pid
+^.vagrant
 
 # Production shell-user ignores
 .cshrc
