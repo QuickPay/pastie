@@ -15,13 +15,13 @@ module Vagrant
         def initialize
           @commands = []
         end
-        
+
         def add_command(after, where, command)
           raise SimpleError, :invalid_after_spec unless [:init, :boot].include?(after)
           raise SimpleError, :invalid_where_spec unless [:guest, :host].include?(where)
           @commands << [:run, after, where, command]
         end
-        
+
         def copy_file(after, source, dest)
           raise SimpleError, :invalid_after_spec unless [:init, :boot].include?(after)
           raise SimpleError, :no_source_file unless File.exist?(source)
@@ -30,7 +30,7 @@ module Vagrant
       end
 
       def provision!
-        config_key = "#{self.class.to_s}:init_done"
+        config_key = "#{self.class.to_s}:#{vm.uuid}.provisioned"
         first_run = false
 
         if config.env.parent and not config.env.parent.local_data.has_key?(config_key)
