@@ -14,7 +14,7 @@ set :copy_exclude, [".hg/*", "spec/*", "vendor/ruby/*", "vendor/bundle/*", "logs
 set :bundle_cmd, "env RB_USER_INSTALL=yes bundle"
 set :use_sudo, false
 
-role :web, "locobad.pil.dk"
+server "locobad.pil.dk", :web, :app, :db
 #role :web, "vagrant@localhost:2222"
 
 set :rails_env, :production
