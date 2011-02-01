@@ -9,7 +9,7 @@ set :scm, :mercurial
 
 set :deploy_to, "/dana/data/pastie.pil.dk"
 set :deploy_via, :copy
-set :copy_cache, "/Users/kenneth/.deploy/cache/scruffy" # FIXME: set by variable from 'deploy'-helper
+set :copy_cache, "/home/drift/.deploy/cache/pil:pastie.pil.dk" # FIXME: set by variable from 'deploy'-helper
 set :copy_exclude, [".hg/*", "spec/*", "vendor/ruby/*", "vendor/bundle/*", "logs/*", "tmp/*"]
 set :bundle_cmd, "env RB_USER_INSTALL=yes bundle"
 
