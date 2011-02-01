@@ -23,4 +23,4 @@ gem 'ruby-debug19', :group => 'development'
 gem 'thin',         :group => 'developmentev'
 
 # Padrino
-gem 'padrino', "0.9.19"
+gem 'padrino', "0.9.20"
