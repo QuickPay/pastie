@@ -5,7 +5,7 @@ set :application, "scruffy"
 set :user, "scruffy"
 
 set :deploy_to, "/dana/data/pastie.pil.dk"
-set :copy_exclude, [".hg/*", "spec/*", "vendor/ruby/*", "vendor/bundle/*", "logs/*", "tmp/*"]
+set :copy_exclude, [".hg/*", "spec/*"]
 set :bundle_cmd, "env RB_USER_INSTALL=yes bundle"
 set :use_sudo, false
 
