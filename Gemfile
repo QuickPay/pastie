@@ -24,3 +24,4 @@ gem 'thin',         :group => 'developmentev'
 
 # Padrino
 gem 'padrino', "0.9.20"
+gem 'sinatra', '1.1.0'
