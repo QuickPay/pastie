@@ -108,7 +108,7 @@ Vagrant::Config.run do |config|
     s.add_command(:init, :guest, 'echo mongod_enable="YES" >>/etc/rc.conf')
     s.add_command(:init, :guest, 'sudo /usr/local/etc/rc.d/mongod start')
 
-    s.add_command(:boot, :guest, "cd /vagrant ; env RB_USER_INSTALL=yes bundle install --deployment --path /home/vagrant/.bundle --without dev")
+    s.add_command(:boot, :guest, "cd /vagrant ; env RB_USER_INSTALL=yes bundle install --deployment --path /home/vagrant/.bundle --without development")
     s.copy_file(:boot, "config/vagrant/nginx.conf", "/home/vagrant/nginx.conf")
     s.add_command(:boot, :guest, "sudo mv /home/vagrant/nginx.conf /usr/local/etc/nginx/nginx.conf")
     s.add_command(:boot, :guest, "cd /vagrant ; bundle exec unicorn -c config/vagrant/unicorn.rb -D -E production")
