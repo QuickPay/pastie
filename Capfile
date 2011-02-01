@@ -1,5 +1,5 @@
 load 'deploy'
-load '/usr/local/etc/Capfile.common'
+require '/usr/local/etc/Capfile.common'
 require 'bundler/capistrano'
 
 set :application, "scruffy"
