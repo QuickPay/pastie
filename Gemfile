@@ -18,9 +18,9 @@ gem 'bson_ext', :require => "mongo"
 # gem 'rack-test', :require => "rack/test", :group => "test"
 
 # Development requirements
-gem 'rack-debug19', :group => 'dev'
-gem 'ruby-debug19', :group => 'dev'
-gem 'thin',         :group => 'dev'
+gem 'rack-debug19', :group => 'development'
+gem 'ruby-debug19', :group => 'development'
+gem 'thin',         :group => 'developmentev'
 
 # Padrino
 gem 'padrino', "0.9.19"
