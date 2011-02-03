@@ -21,8 +21,8 @@ pid "/dana/data/pastie.pil.dk/shared/pids/unicorn.pid"
 
 # some applications/frameworks log to stderr or stdout, so prevent
 # them from going to /dev/null when daemonized here:
-stderr_path "#{APP_ROOT}/shared/log/unicorn.error_log"
-stdout_path "#{APP_ROOT}/shared/log/unicorn.error_log"
+stderr_path "#{APP_ROOT}/shared/log/unicorn.stderr.log"
+stdout_path "#{APP_ROOT}/shared/log/unicorn.stdout.log"
 
 # combine REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
