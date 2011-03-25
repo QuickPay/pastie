@@ -6,6 +6,7 @@ set :user, "scruffy"
 
 set :deploy_to, "/dana/data/pastie.pil.dk"
 set :copy_exclude, [".hg/*", "spec/*"]
+set :unicorn, true
 
 server "locobad.pil.dk", :web, :app, :db
 
