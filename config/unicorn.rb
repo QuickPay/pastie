@@ -17,7 +17,7 @@ listen "#{APP_ROOT}/shared/system/unicorn.sock", :backlog => 8
 timeout 30
 
 # feel free to point this anywhere accessible on the filesystem
-pid "/dana/data/pastie.pil.dk/shared/pids/unicorn.pid"
+pid "#{APP_ROOT}/shared/pids/unicorn.pid"
 
 # some applications/frameworks log to stderr or stdout, so prevent
 # them from going to /dev/null when daemonized here:
