@@ -11,3 +11,7 @@ set :unicorn, true
 server "locobad.pil.dk", :web, :app, :db
 
 load '/usr/local/etc/Capfile.common'
+
+after "deploy:update_code" do
+  run "ln -s /dana/data/pastie.pil.dk/shared/documents #{latest_release}/public/documents"
+end
