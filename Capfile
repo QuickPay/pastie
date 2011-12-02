@@ -1,8 +1,8 @@
 load 'deploy'
 require 'bundler/capistrano'
 
-set :application, "scruffy"
-set :user, "scruffy"
+set :application, "pastie.pil.dk"
+set :user, "pastie"
 
 set :deploy_to, "/dana/data/pastie.pil.dk"
 set :copy_exclude, [".hg/*", "spec/*"]
