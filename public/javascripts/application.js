@@ -50,15 +50,15 @@ haste_document.prototype.save = function(data, callback) {
   var _this = this;
   $.ajax('/documents', {
     type: 'post',
-    data: { text: data },
-    dataType: 'json',
+    data: data,
+    dataType: 'text',
     success: function(res) {
       _this.locked = true;
-      _this.key = res.key;
+      _this.key = res;
       var high = hljs.highlightAuto(data);
       callback({
         value: high.value,
-        key: res.key,
+        key: res,
         language: high.language
       });
     }

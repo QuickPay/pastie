@@ -1,19 +1,17 @@
 require 'bundler/setup'
 require 'sinatra'
-require 'json'
 require 'digest'
 
 set :public_folder, File.dirname(__FILE__) + '/public'
 
 # Store a document
 post '/documents' do
-  contents = params[:text]
+  contents = request.body.read
   digest = Digest::MD5.base64digest(contents).sub(/=*$/, '').gsub(/\//, '-')
 
   File.open("public/documents/#{digest}", 'w') { |f| f.write contents }
 
-  content_type :json
-  { key: digest }.to_json.to_s
+  digest
 end
 
 # Default GET request for sub-pages.
