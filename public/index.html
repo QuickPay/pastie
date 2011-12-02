@@ -1,48 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 	<head>
-		<title>
-			Welcome to Padrino
-		</title>
-		<style type="text/css">
-		body{
-		font-family:Helvetica,Arial,sans-serif;
-		line-height:150%;
-		}
-		ul,li{
-		list-style-type:none;
-		margin:0px;
-		padding:5px 0px 5px 0px;
-		margin-left:5px;
-		}
-		a{
-		color:#333;
-		}
-		</style>
+		<title>pastie</title>
+
+		<link rel="stylesheet" type="text/css" href="/stylesheets/solarized_dark.css"/>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/application.css"/>
+
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+		<script type="text/javascript" src="/javascripts/highlight.min.js"></script>
+		<script type="text/javascript" src="/javascripts/application.js"></script>
+
+		<meta name="robots" content="noindex,nofollow"/>
+
+		<script type="text/javascript">
+			var app = null;
+			// Handle pops
+			var handlePop = function(evt) {
+				var path = evt.target.location.pathname;
+				if (path === '/') { app.newDocument(true); }
+				else { app.loadDocument(path.substring(1, path.length)); }
+			};
+			// Set up the pop state to handle loads, skipping the first load
+			// to make chrome behave like others:
+			// http://code.google.com/p/chromium/issues/detail?id=63040
+			setTimeout(function() {
+				window.onpopstate = function(evt) {
+					try { handlePop(evt); } catch(err) { /* not loaded yet */ }
+				};
+			}, 1000);
+			// Construct app and load initial path
+			$(function() {
+				app = new haste('hastebin');
+				handlePop({ target: window });
+			});
+		</script>
 	</head>
+
 	<body>
-		<h1>
-			Welcome to Padrino.rb
-		</h1>
-		<p>
-			Thanks for choosing Padrino for your Development.<br />
-			To get you started you we collected some Tutorials and Links:<br />
-		</p>
-		<ul>
-			<li>
-				<a href="http://www.padrinorb.com/guides/blog-tutorial">Blog Tutorial</a>
-			</li>
-			<li>
-				<a href="http://www.padrinorb.com/guides/generators">Generators</a>
-			</li>
-			<li>
-				<a href="http://www.padrinorb.com/guides/development-commands">Development Commands</a>
-			</li>
-		</ul>
-		<p>
-			To define a new default site for your project please delete this <em>index.html</em> file from the <em>public</em> directory.
-		</p>
+		<div id="key">
+		  <div id="pointer" style="display:none;"></div>
+			<div id="box2">
+				<div class="save function"></div>
+				<div class="new function"></div>
+				<div class="duplicate function"></div>
+			</div>
+			<div id="box3" style="display:none;">
+				<div class="label"></div>
+				<div class="shortcut"></div>
+			</div>
+		</div>
+
+		<pre id="box" style="display:none;" tabindex="0"><code></code></pre>
+		<textarea spellcheck="false" style="display:none;"></textarea>
 	</body>
 </html>
