@@ -8,7 +8,7 @@ set :public_folder, File.dirname(__FILE__) + '/public'
 # Store a document
 post '/documents' do
   contents = params[:text]
-  digest = Digest::MD5.base64digest(contents).sub(/=*$/, '').sub(/\//, '-')
+  digest = Digest::MD5.base64digest(contents).sub(/=*$/, '').gsub(/\//, '-')
 
   File.open("public/documents/#{digest}", 'w') { |f| f.write contents }
 
