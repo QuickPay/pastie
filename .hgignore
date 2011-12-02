@@ -2,6 +2,7 @@
 ^.bundle/ruby
 ^.powder$
 ^tmp/
+^public/documents/
 
 # Production shell-user ignores
 .cshrc
