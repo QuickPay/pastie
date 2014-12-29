@@ -1,9 +1,9 @@
-# pastie.pil.dk
+# pastie
 
 Simple pastebin-server. Stores documents in the filesystem, and is entirely
 static on the GET-side of things.
 
-Much is stolen from https://github.com/seejohnrun/haste-server
+Much is borrowed from https://github.com/seejohnrun/haste-server
 
 
 ## Server setup
@@ -11,5 +11,59 @@ Much is stolen from https://github.com/seejohnrun/haste-server
 Docroot pointing to public/. If possible, send /index.html instead of a 404 on
 GET requests, and only proxy POST-requests to the app.
 
+nginx sample:
+
+    # Upstream Unicorn app-server
+    upstream @pastie {
+      server unix:/var/www/pastie/shared/system/unicorn.sock fail_timeout=0;
+    }
+
+    # HTTP->HTTPS redirect
+    server {
+      listen [::]:80;
+      listen 80;
+      access_log off;
+      server_name pastie.url;
+      rewrite ^(.*)$ https://pastie.url/ permanent;
+    }
+
+    server {
+      listen [::]:443 default ssl;
+      listen 443 default ssl;
+      server_name pastie.url;
+
+      ssl_certificate /usr/local/etc/ssl/crt/pastie.crt;
+      ssl_certificate_key /usr/local/etc/ssl/key/pastie.key;
+
+      keepalive_timeout 5;
+
+      access_log /var/www/pastie/logs/nginx-access_log combined;
+      error_log /var/www/pastie/logs/nginx-error_log;
+
+      # path for static files
+      root /var/www/pastie/current/public;
+
+      location / {
+        try_files $uri /index.html =404;
+      }
+
+      location = /documents {
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_redirect http:// https://;
+
+        auth_basic "Restricted";
+        auth_basic_user_file pastie-htpasswd;
+
+        if ($request_method = POST) {
+          proxy_pass http://@pastie;
+          break;
+        }
+      }
+    }
+
 Create a cronjob to delete stuff in public/documents/ whenever you think it is
 old enough to be deleted.
+
+    0 0 * * * find /var/www/pastie/shared/documents/ -ctime +4w -delete
