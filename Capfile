@@ -1,17 +1,18 @@
 load 'deploy'
 require 'bundler/capistrano'
 
-set :application, "pastie.pil.dk"
+set :application, "pastie"
 set :user, "pastie"
 
-set :deploy_to, "/dana/data/pastie.pil.dk"
+set :deploy_to, "/usr/local/www/pastie"
 set :copy_exclude, [".hg/*", "spec/*"]
 set :unicorn, true
 
-server "locobad.pil.dk", :web, :app, :db
+set :server, ask('Server:', nil)
+server fetch(:server), :web, :app, :db
 
 load '/usr/local/etc/Capfile.common'
 
 after "deploy:update_code" do
-  run "ln -s /dana/data/pastie.pil.dk/shared/documents #{latest_release}/public/documents"
+  run "ln -s /usr/local/www/pastie/shared/documents #{latest_release}/public/documents"
 end

@@ -15,7 +15,7 @@ nginx sample:
 
     # Upstream Unicorn app-server
     upstream @pastie {
-      server unix:/var/www/pastie/shared/system/unicorn.sock fail_timeout=0;
+      server unix:/usr/local/www/pastie/shared/system/unicorn.sock fail_timeout=0;
     }
 
     # HTTP->HTTPS redirect
@@ -37,11 +37,11 @@ nginx sample:
 
       keepalive_timeout 5;
 
-      access_log /var/www/pastie/logs/nginx-access_log combined;
-      error_log /var/www/pastie/logs/nginx-error_log;
+      access_log /usr/local/www/pastie/logs/nginx-access_log combined;
+      error_log /usr/local/www/pastie/logs/nginx-error_log;
 
       # path for static files
-      root /var/www/pastie/current/public;
+      root /usr/local/www/pastie/current/public;
 
       location / {
         try_files $uri /index.html =404;
@@ -66,7 +66,7 @@ nginx sample:
 Create a cronjob to delete stuff in public/documents/ whenever you think it is
 old enough to be deleted.
 
-    0 0 * * * find /var/www/pastie/shared/documents/ -ctime +4w -delete
+    0 0 * * * find /usr/local/www/pastie/shared/documents/ -ctime +4w -delete
 
 ## Clients
 
