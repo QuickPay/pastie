@@ -64,9 +64,13 @@ nginx sample:
     }
 
 Create a cronjob to delete stuff in public/documents/ whenever you think it is
-old enough to be deleted.
+old enough to be deleted. eg:
 
     0 0 * * * find /usr/local/www/pastie/shared/documents/ -ctime +4w -delete
+
+And perhaps one to start the app
+
+    @reboot cd /usr/local/www/pastie/current/ && /usr/local/bin/bundle exec unicorn -c config/unicorn.rb -E production -D
 
 ## Clients
 
