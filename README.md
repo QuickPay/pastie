@@ -5,6 +5,7 @@ static on the GET-side of things.
 
 Much is borrowed from https://github.com/seejohnrun/haste-server
 
+Deploy with capistrano: `server=pastie.url cap deploy`
 
 ## Server setup
 

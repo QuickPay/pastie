@@ -8,8 +8,7 @@ set :deploy_to, "/usr/local/www/pastie"
 set :copy_exclude, [".hg/*", "spec/*"]
 set :unicorn, true
 
-set :server, ask('Server:', nil)
-server fetch(:server), :web, :app, :db
+server ENV['server'], :web, :app, :db
 
 load '/usr/local/etc/Capfile.common'
 
