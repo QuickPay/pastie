@@ -67,3 +67,21 @@ Create a cronjob to delete stuff in public/documents/ whenever you think it is
 old enough to be deleted.
 
     0 0 * * * find /var/www/pastie/shared/documents/ -ctime +4w -delete
+
+## Clients
+
+### Cli
+
+    #!/bin/sh
+    # Pipe STDOUT to pastie.
+    _data=$(cat)
+    _key=$( curl -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -skd "${_data}" https://pastie.url/documents )
+    echo https://pastie.url/${_key}
+
+### OS X workflow
+    
+Use the follwing with `Run Shell Script`:
+
+    _type=${1:-txt}
+    _key=$(cat | curl -s -X POST "https://$user:$passwd@pastie.url/documents" --data-binary @-)
+    open https://pastie.url/${_key}.${_type}
