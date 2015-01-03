@@ -29,8 +29,8 @@ nginx sample:
     }
 
     server {
-      listen [::]:443 default ssl;
-      listen 443 default ssl;
+      listen [::]:443 ssl;
+      listen 443 ssl;
       server_name pastie.url;
 
       ssl_certificate /usr/local/etc/ssl/crt/pastie.crt;
