@@ -83,6 +83,10 @@ And perhaps one to start the app
     _key=$( curl -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -skd "${_data}" https://pastie.url/documents )
     echo https://pastie.url/${_key}
 
+### Hotkeys for X
+
+    xclip -o | pastie | xargs firefox
+
 ### OS X workflow
     
 Use the follwing with `Run Shell Script`:
