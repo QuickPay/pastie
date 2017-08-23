@@ -80,7 +80,7 @@ And perhaps one to start the app
     #!/bin/sh
     # Pipe STDOUT to pastie.
     _data=$(cat)
-    _key=$( curl -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -skd "${_data}" https://pastie.url/documents )
+    _key=$( curl -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -H "Content-Type: application/octet-stream" -skd "${_data}" https://pastie.url/documents )
     echo https://pastie.url/${_key}
 
 ### Hotkeys for X
@@ -92,5 +92,5 @@ And perhaps one to start the app
 Use the follwing with `Run Shell Script`:
 
     _type=${1:-txt}
-    _key=$(cat | curl -s -X POST "https://$user:$passwd@pastie.url/documents" --data-binary @-)
+    _key=$(cat | curl -H "Content-Type: application/octet-stream" -s -X POST "https://$user:$passwd@pastie.url/documents" --data-binary @-)
     open https://pastie.url/${_key}.${_type}
