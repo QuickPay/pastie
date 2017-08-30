@@ -8,6 +8,7 @@ set :public_folder, File.dirname(__FILE__) + '/public'
 post '/documents' do
   contents = request.body.read
   digest = Digest::MD5.base64digest(Time.now.to_f.to_s + contents).sub(/=*$/, '').gsub(/\//, '-')
+  digest = "#{digest}.#{params[:type]}" if params[:type] =~ /^[A-z0-9\.]{,10}$/
 
   File.open("public/documents/#{digest}", 'w') { |f| f.write contents }
 

@@ -79,9 +79,13 @@ And perhaps one to start the app
 
     #!/bin/sh
     # Pipe STDOUT to pastie.
-    _data=$(cat)
-    _key=$( curl -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -H "Content-Type: application/octet-stream" -skd "${_data}" https://pastie.url/documents )
-    echo https://pastie.url/${_key}
+    if [ -z "$1" ]; then
+      _key=$( curl -H "Content-Type: application/octet-stream" -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -sk --data-binary @- https://pastie.url/documents )
+      echo https://pastie.url/${_key}
+    else
+      _key=$( curl -H "Content-Type: application/octet-stream" -H "Authorization: Basic $REPLACE-ME-WITH-AUTH" -sk --data-binary @- "https://pastie.url/documents?type=$1" )
+      echo https://pastie.url/documents/${_key}
+    fi
 
 ### Hotkeys for X
 
