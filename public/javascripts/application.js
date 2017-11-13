@@ -50,6 +50,7 @@ haste_document.prototype.save = function(data, callback) {
   var _this = this;
   $.ajax('/documents', {
     type: 'post',
+    contentType: 'application/octet-stream',
     data: data,
     dataType: 'text',
     success: function(res) {
