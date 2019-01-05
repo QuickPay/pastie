@@ -32,7 +32,8 @@ haste_document.prototype.load = function(key, callback, lang) {
       callback({
         value: high.value,
         key: key,
-        language: high.language || lang
+        language: high.language || lang,
+        lineCount: res.split('\n').length
       });
     },
     error: function(err, err2, err3) {
@@ -60,7 +61,8 @@ haste_document.prototype.save = function(data, callback) {
       callback({
         value: high.value,
         key: res,
-        language: high.language
+        language: high.language,
+        lineCount: data.split('\n').length
       });
     }
   });
@@ -152,6 +154,21 @@ haste.prototype.lookupTypeByExtension = function(ext) {
   return haste.extensionMap[ext] || ext;
 };
 
+// Add line numbers to the document
+// For the specified number of lines
+haste.prototype.addLineNumbers = function(lineCount) {
+  var h = '';
+  for (var i = 0; i < lineCount; i++) {
+    h += (i + 1).toString() + '<br/>';
+  }
+  $('#linenos').html(h);
+};
+
+// Remove the line numbers
+haste.prototype.removeLineNumbers = function() {
+  $('#linenos').html('&gt;');
+};
+
 // Load a document and show it
 haste.prototype.loadDocument = function(key) {
   // Split the key up
@@ -173,6 +190,7 @@ haste.prototype.loadDocument = function(key) {
       _this.fullKey();
       _this.$textarea.val('').hide();
       _this.$box.show().focus();
+      _this.addLineNumbers(ret.lineCount);
     }
     else {
       _this.newDocument();
@@ -204,6 +222,7 @@ haste.prototype.lockDocument = function() {
       _this.fullKey();
       _this.$textarea.val('').hide();
       _this.$box.show().focus();
+      _this.addLineNumbers(ret.lineCount);
     }
   });
 };
