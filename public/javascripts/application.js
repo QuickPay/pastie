@@ -124,6 +124,7 @@ haste.prototype.newDocument = function(hideHistory) {
   this.$textarea.val('').show('fast', function() {
     this.focus();
   });
+  this.removeLineNumbers();
 };
 
 // Map of common extensions
