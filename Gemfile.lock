@@ -1,20 +1,20 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    kgio (2.11.0)
-    mustermann (1.0.0)
-    rack (2.0.3)
-    rack-protection (2.0.0)
+    kgio (2.11.2)
+    mustermann (1.0.3)
+    rack (2.0.6)
+    rack-protection (2.0.5)
       rack
     raindrops (0.19.0)
-    rake (12.0.0)
-    sinatra (2.0.0)
+    rake (12.3.2)
+    sinatra (2.0.5)
       mustermann (~> 1.0)
       rack (~> 2.0)
-      rack-protection (= 2.0.0)
+      rack-protection (= 2.0.5)
       tilt (~> 2.0)
-    tilt (2.0.8)
-    unicorn (5.3.0)
+    tilt (2.0.9)
+    unicorn (5.4.1)
       kgio (~> 2.6)
       raindrops (~> 0.7)
 
@@ -28,4 +28,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.12.5
+   1.16.1
