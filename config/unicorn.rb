@@ -1,6 +1,6 @@
 # $PIL$
 
-APP_ROOT = "/usr/local/www/pastie"
+APP_ROOT = "/data/apps/pastie"
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
 worker_processes 1
@@ -21,8 +21,8 @@ pid "#{APP_ROOT}/shared/pids/unicorn.pid"
 
 # some applications/frameworks log to stderr or stdout, so prevent
 # them from going to /dev/null when daemonized here:
-stderr_path "#{APP_ROOT}/shared/log/unicorn.stderr.log"
-stdout_path "#{APP_ROOT}/shared/log/unicorn.stdout.log"
+stderr_path "#{APP_ROOT}/shared/logs/unicorn.stderr.log"
+stdout_path "#{APP_ROOT}/shared/logs/unicorn.stdout.log"
 
 # combine REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
