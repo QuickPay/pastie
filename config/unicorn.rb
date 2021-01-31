@@ -9,8 +9,7 @@ worker_processes 1
 # "current" directory that Capistrano sets up.
 working_directory "#{APP_ROOT}" # available in 0.94.0+
 
-# listen on TCP 8000
-listen 8000
+listen ENV["PORT"]
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
