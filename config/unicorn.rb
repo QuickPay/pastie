@@ -1,28 +1,27 @@
 # $PIL$
 
-APP_ROOT = "/data/apps/pastie"
+APP_ROOT = "/root/pastie"
 # Use at least one worker per core if you're on a dedicated server,
 # more will usually help for _short_ waits on databases/caches.
 worker_processes 1
 
 # Help ensure your application will always spawn in the symlinked
 # "current" directory that Capistrano sets up.
-working_directory "#{APP_ROOT}/current" # available in 0.94.0+
+working_directory "#{APP_ROOT}" # available in 0.94.0+
 
-# listen on a Unix domain socket.
-# we use a shorter backlog for quicker failover when busy
-listen "#{APP_ROOT}/shared/system/unicorn.sock", :backlog => 8
+# listen on TCP 8000
+listen 8000
 
 # nuke workers after 30 seconds instead of 60 seconds (the default)
 timeout 30
 
 # feel free to point this anywhere accessible on the filesystem
-pid "#{APP_ROOT}/shared/pids/unicorn.pid"
+#pid "#{APP_ROOT}/shared/pids/unicorn.pid"
 
 # some applications/frameworks log to stderr or stdout, so prevent
 # them from going to /dev/null when daemonized here:
-stderr_path "#{APP_ROOT}/shared/logs/unicorn.stderr.log"
-stdout_path "#{APP_ROOT}/shared/logs/unicorn.stdout.log"
+#stderr_path "#{APP_ROOT}/shared/logs/unicorn.stderr.log"
+#stdout_path "#{APP_ROOT}/shared/logs/unicorn.stdout.log"
 
 # combine REE with "preload_app true" for memory savings
 # http://rubyenterpriseedition.com/faq.html#adapt_apps_for_cow
