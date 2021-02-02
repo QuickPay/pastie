@@ -2,8 +2,8 @@ version: "3"
 
 services:
   pastie:
-    image: ruby:2.7
-    command: sh -c "mkdir -p public/documents && gem install bundler:1.15.4 && bundle install && bundle exec unicorn -c config/unicorn.rb -E production"
+    build: .
+    command: bundle exec unicorn -c config/unicorn-docker.rb -E production
     environment:
       - RACK_ENV=production
       - PORT=8000
@@ -11,4 +11,4 @@ services:
       - "8000:8000"
     working_dir: /root/pastie
     volumes:
-      - .:/root/pastie:Z
+      - pastiedocuments:/root/pastie/public/documents
