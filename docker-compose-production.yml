@@ -2,15 +2,12 @@ version: "3"
 
 services:
   pastie:
-    build: .
     image: quickpay/pastie
-    command: bundle exec unicorn -c config/unicorn-docker.rb -E development
     environment:
-      - RACK_ENV=development
+      - RACK_ENV=production
       - PORT=8000
     ports:
       - "8000:8000"
-    working_dir: /root/pastie
     volumes:
       - pastiedocuments:/root/pastie/public/documents
 volumes:

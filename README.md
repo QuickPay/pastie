@@ -7,6 +7,8 @@ Much is borrowed from https://github.com/seejohnrun/haste-server
 
 Deploy with capistrano: `server=pastie.url cap deploy`
 
+Deploy with docker-compose: `DOCKER_HOST=ssh://pastie.url docker-compose -f docker-compose-production.yml up -d`
+
 ## Server setup
 
 Docroot pointing to public/. If possible, send /index.html instead of a 404 on
